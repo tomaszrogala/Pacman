@@ -1,2 +1,2 @@
 # Pacman
-classic Pacman game
+Classic Pacman game
