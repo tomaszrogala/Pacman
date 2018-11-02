@@ -4,7 +4,6 @@
 #include "Ghost.h"
 #include "Ghost1.h"
 #include "Ghost2.h"
-#include "Ghost3.h"
 #include "Map.h"
 #include "Element.h"
 #include "Frame.h"
