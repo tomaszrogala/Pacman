@@ -53,17 +53,17 @@ int main()
 	bool change = true; int change_time = 100; bool ghost_death = false; bool flag = true;
 	int pacman_x; int pacman_y;
 
-	Pacman p('P'); Ghost2 g_1a; Ghost2 g_1b; Ghost2 g_2a; Ghost2 g_2b; Ghost2 g_2c; Ghost2 g_3a; Ghost1 g;
+	Pacman p('P'); Ghost1 g_1a; Ghost2 g_1b; Ghost2 g_2a; Ghost2 g_2b; Ghost2 g_2c; Ghost2 g_3a; Ghost1 g;
 	Ghost *ghost[7] = { &g,&g_1a,&g_1b,&g_2a,&g_2b,&g_2c,&g_3a };
 	Ghost *buffor_g[7];  Creation *buffor_c; int buffor;
 	Frame frame(width, high); Coockies coockies(width, high);
 
 	//width:
-	Wall w1(2 * 2, 2, 2 * 8, 1); Wall w2(2 * 12, 2, 2 * 3, 1); Wall w3(2 * 4, 4, 2 * 9, 1); Wall w4(2 * 5, 6, 2 * 3, 1); Wall w5(20, 6, 2, 1);
-	Wall w6(2 * 4, 11, 2 * 5, 1); Wall w7(2 * 10, 11, 2 * 2, 1); Wall w8(2 * 2, 13, 2 * 12, 1); Wall w9(18, 9, 2, 1);
+	Wall w1(4, 2, 16, 1); Wall w2(24, 2, 6, 1); Wall w3(8, 4, 18, 1); Wall w4(10, 6, 6, 1); Wall w5(20, 6, 2, 1);
+	Wall w6(8, 11, 10, 1); Wall w7(20, 11, 4, 1); Wall w8(4, 13, 24, 1); Wall w9(18, 9, 2, 1);
 	//high:
-	Wall w10(2 * 10, 1, 2, 2); Wall w11(3, 2, 2, 10); Wall w12(2 * 14, 3, 2, 11); Wall w13(2 * 12, 5, 2, 7);
-	Wall w14(7, 4, 2, 3); Wall w15(7, 9, 2, 3); Wall w16(2 * 6, 7, 2, 3); Wall w17(2 * 10, 7, 2, 3);
+	Wall w10(20, 1, 2, 2); Wall w11(3, 2, 2, 10); Wall w12(28, 3, 2, 11); Wall w13(24, 5, 2, 7);
+	Wall w14(7, 4, 2, 3); Wall w15(7, 9, 2, 3); Wall w16(12, 7, 2, 3); Wall w17(20, 7, 2, 3);
 	Wall ww(0, 0, 0, 0);
 
 	Wall walls[18] = { ww, w1,w2,w3 ,w4 ,w5 ,w6 ,w7,w8 ,w9 ,w10 ,w11 ,w12 ,w13 ,w14 ,w15 ,w16, w17 };
