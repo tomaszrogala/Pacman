@@ -51,7 +51,7 @@ void Pacman::set_possition(char *M[], char &button, int &ghost_number, bool &gho
 	M[this->x][this->y] = sign;
 }
 
-void Pacman::move(char &button,char *M[], bool &flag, int p_x, int p_y, int &c_numb, bool *C[])
+void Pacman::move(char &button,char *M[], bool &flag, int p_x, int p_y, int &c_numb, bool *C[], bool &next)
 {
 	M[x][y] = 'f';
 	if (C[x][y] == true)
@@ -61,15 +61,19 @@ void Pacman::move(char &button,char *M[], bool &flag, int p_x, int p_y, int &c_n
 	switch (button)
 	{
 	case 72:
-		if (M[x][y - 1] == 'f' || M[x][y - 1] == 'A' || M[x][y - 1] == 'o' || M[x][y - 1] == 'O' || M[x][y - 1] == 'V'){
-			if (M[x][y - 1] == 'O'){
-				if (sign == 'P'){
+		if (M[x][y - 1] == 'f' || M[x][y - 1] == 'A' || M[x][y - 1] == 'o' || M[x][y - 1] == 'O' || M[x][y - 1] == 'V') {
+			if (M[x][y - 1] == 'O') {
+				if (sign == 'P') {
 					change(flag, M);
 				}
-				else
+				else 
 					break;
 			}
 			y--;
+			next = true;
+		}
+		else {
+			next = false;
 		}
 		break;
 
@@ -79,10 +83,14 @@ void Pacman::move(char &button,char *M[], bool &flag, int p_x, int p_y, int &c_n
 				if (sign == 'P'){
 					change(flag, M);
 				}
-				else
+				else 
 					break;
 			}
 			y++;
+			next = true;
+		}
+		else {
+			next = false;
 		}
 		break;
 
@@ -92,10 +100,14 @@ void Pacman::move(char &button,char *M[], bool &flag, int p_x, int p_y, int &c_n
 				if (sign == 'P'){
 					change(flag, M);
 				}
-				else
+				else 
 					break;
 			}
 			x--;
+			next = true;
+		}
+		else {
+			next = false;
 		}
 		break;
 	case 77:
@@ -108,6 +120,10 @@ void Pacman::move(char &button,char *M[], bool &flag, int p_x, int p_y, int &c_n
 					break;
 			}
 			x++;
+			next = true;
+		}
+		else {
+			next = false;
 		}
 		break;
 	}
