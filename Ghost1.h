@@ -12,7 +12,7 @@ public:
 	void view();
 	void erase(bool *C[]);
 	void change(bool &flag, char*M[]);
-	void move(char &button, char *M[], bool &change, int p_x, int p_y, int &c_numb, bool *C[]);
+	void move(char &button, char *M[], bool &change, int p_x, int p_y, int &c_numb, bool *C[], bool &next);
 
 	void search_path(char *M[], bool &change, int p_x, int p_y);
 	void creat_path(char *M[]); 
