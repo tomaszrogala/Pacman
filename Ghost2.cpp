@@ -211,7 +211,7 @@ void Ghost2::erase(bool *C[])
 		std::cout << ' ';
 }
 
-void Ghost2::move(char &button, char *M[], bool &change, int p_x, int p_y, int &c_numb, bool *C[])
+void Ghost2::move(char &button, char *M[], bool &change, int p_x, int p_y, int &c_numb, bool *C[], bool &next)
 {
 	if (C[x][y] == true && M[x][y] != '-' && M[x][y] != '.') {
 		M[x][y] = 'o';
@@ -291,7 +291,7 @@ void Ghost2::move(char &button, char *M[], bool &change, int p_x, int p_y, int &
 				begin_index = x*high + a;
 			}
 
-			if (r >= 15 && r < 20) {
+			if (r >= 20) {
 				do{
 					a = rand() % 34;
 					b = rand() % 16;
