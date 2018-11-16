@@ -4,6 +4,7 @@
 #include "Ghost.h"
 #include "Ghost1.h"
 #include "Ghost2.h"
+#include "Ghost3.h"
 #include "Map.h"
 #include "Element.h"
 #include "Frame.h"
@@ -12,11 +13,11 @@
 #include <conio.h>
 #include "Spawn.h"
 
-void creation_move(Map &m, char &button, int &ghost_number, bool &ghost_death, int &pacman_x, int &pacman_y, bool &flag, bool &change, Coockies &coockies, int i)
+void creation_move(Map &m, char &button, int &ghost_number, bool &ghost_death, int &pacman_x, int &pacman_y, bool &flag, bool &change, Coockies &coockies, int i, bool &next) //int number, *C[]
 {
 	m.creat[i]->set_possition(m.M, button, ghost_number, ghost_death, pacman_x, pacman_y, flag);
 	m.creat[i]->erase(coockies.C);
-	m.creat[i]->move(button, m.M, change, pacman_x, pacman_y, coockies.number, coockies.C);
+	m.creat[i]->move(button, m.M, change, pacman_x, pacman_y, coockies.number, coockies.C, next);
 	m.creat[i]->set_possition(m.M, button, ghost_number, ghost_death, pacman_x, pacman_y, flag);
 	m.creat[i]->view();
 }
@@ -48,9 +49,9 @@ int main()
 {
 	srand(time(NULL));
 
-	int width = 34; int high = 16; char button = 1; int ghost_number = 6; // int ghost1_number = 1; int ghost2_number = 3; int ghost3_number = 2; 
+	int width = 34; int high = 16; char button = 1; int ghost_number = 6; 
 	bool change = true; int change_time = 100; bool ghost_death = false; bool flag = true;
-	int pacman_x; int pacman_y;
+	int pacman_x; int pacman_y; bool next = true;
 
 	Pacman p('P'); Ghost1 g_1a; Ghost2 g_1b; Ghost2 g_2a; Ghost2 g_2b; Ghost2 g_2c; Ghost2 g_3a; Ghost1 g;
 	Ghost *ghost[7] = { &g,&g_1a,&g_1b,&g_2a,&g_2b,&g_2c,&g_3a };
@@ -107,20 +108,28 @@ int main()
 		while (_kbhit()) {
 			button = _getch();
 		}
+		
+		do {
 
-		creation_move(m, button, ghost_number, ghost_death, pacman_x, pacman_y, flag, change, coockies, 0);
-
+			if (change == false) {
+				creation_move(m, button, ghost_number, ghost_death, pacman_x, pacman_y, flag, change, coockies, 0, next);
+				creation_move(m, button, ghost_number, ghost_death, pacman_x, pacman_y, flag, change, coockies, 0, next);
+			}
+			else {
+				creation_move(m, button, ghost_number, ghost_death, pacman_x, pacman_y, flag, change, coockies, 0, next);
+			}
+		
 		for (int i = 1; i <= ghost_number; i++){
 			check_ghost_death(pacman_x, pacman_y, ghost_death, ghost_number, m, ghost, buffor_g, i);
 		}
 		
-		while (_kbhit() == false) {
+	//	while (_kbhit() == false) {
 			if (change == false) {
 				if (buffor == change_time) {
 					flag = false;
 					for (int i = 1; i <= ghost_number; i++) {
 						m.creat[i]->change(change, m.M);
-						creation_move(m, button, ghost_number, ghost_death, pacman_x, pacman_y, flag, change, coockies, i);
+						creation_move(m, button, ghost_number, ghost_death, pacman_x, pacman_y, flag, change, coockies, i, next);
 					}
 					flag = true;
 				}
@@ -138,7 +147,7 @@ int main()
 
 			//GHOST MOVE:
 			for (int i = 1; i <= ghost_number; i++) {
-				creation_move(m, button, ghost_number, ghost_death, pacman_x, pacman_y, flag, change, coockies, i);
+				creation_move(m, button, ghost_number, ghost_death, pacman_x, pacman_y, flag, change, coockies, i, next);
 				if (button == 0)
 					break;
 				check_ghost_death(pacman_x, pacman_y, ghost_death, ghost_number, m, ghost, buffor_g, i);
@@ -155,8 +164,19 @@ int main()
 					}
 							std::cout << '\n';
 				}*/
-			}
+	//		}
+		} while (next == true && _kbhit() == false);
+		while (next == false && _kbhit() == false)
+		{
+			Sleep(150);
+			for (int i = 1; i <= ghost_number; i++) {
+				creation_move(m, button, ghost_number, ghost_death, pacman_x, pacman_y, flag, change, coockies, i, next);
+				if (button == 0)
+					break;
+				check_ghost_death(pacman_x, pacman_y, ghost_death, ghost_number, m, ghost, buffor_g, i);
 
+			}
+		}
 			if ((coockies.number) == 0) {
 				win(button);
 			}
