@@ -11,7 +11,7 @@ public:
 	void change(bool &flag, char*M[]);
 	void set_possition(char *M[], char &button, int &ghost_number, bool &ghost_death, int &x, int &y, bool flag);
 	void set_start_possition(char *M[]);
-	void move(char &button, char *M[], bool &flag, int p_x, int p_y, int &c_numb, bool *C[]);
+	void move(char &button, char *M[], bool &flag, int p_x, int p_y, int &c_numb, bool *C[], bool &next);
 	bool die(char *M[], int x, int y, bool ghost_death);
 
 	Pacman(char sign)
