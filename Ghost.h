@@ -2,7 +2,7 @@
 #include "Creation.h"
 #include "Coockies.h"
 
-class Ghost :virtual public Creation, public Coockies
+class Ghost :virtual public Creation
 {
 public:
 
